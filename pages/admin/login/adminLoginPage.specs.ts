@@ -1,14 +1,15 @@
 import type { Page, Locator } from '@playwright/test';
+import {expect} from "@playwright/test";
 
-export class LoginPage {
+export class AdminLoginPage {
     private readonly loginField: Locator;
     private readonly passwordField: Locator;
     private readonly submitButton: Locator;
 
     constructor(readonly page : Page) {
-        this.loginField = this.page.locator('css=#dv_email_usr');
-        this.passwordField = this.page.locator('xpath=//input[@type="password"]');
-        this.submitButton = this.page.locator('css=#logIn1');
+        this.loginField = this.page.locator('css=#email');
+        this.passwordField = this.page.locator('css=#password-field');
+        this.submitButton = this.page.locator('xpath=.//button[@type="submit"]');
     }
 
     async logIn(loginName, passowrd) {
@@ -17,7 +18,4 @@ export class LoginPage {
         await this.submitButton.click();
     }
 
-    async waitForElement(locator) {
-        this.page.waitForSelector(locator);
-    }
 }
