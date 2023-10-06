@@ -13,8 +13,8 @@ test.beforeAll(async async => {
 
 test.describe('Tests for login', () => {
   test('login as user', async ({ page }) => {
-    await page.goto('https://dev.transfans.com/login');
-    await expect(page).toHaveURL('https://dev.transfans.com/login');
+    await page.goto(baseTest.baseURL);
+    await expect(page).toHaveURL(baseTest.baseURL);
 
     const loginPage = new LoginPage(page);
     await loginPage.logIn(baseTest.userName, baseTest.userPassword)
