@@ -18,7 +18,7 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: npx playwright test
+      run: BASE_URL=https://dev.transfans.com/login ADMIN_URL=https://admin.dev.transfans.com/ CREATOR_NAME=rezinazina@internetkeno.com CREATOR_PASSWORD='Qweasdzxc123?' ADMIN_NAME=admin2@gmail.com ADMIN_PASSWORD='M0VtYmVk' USER_NAME=usertf2@diginey.com USER_PASSWORD='Qweasdzxc123?' npx playwright test --workers=4
     - uses: actions/upload-artifact@v3
       if: always()
       with:
