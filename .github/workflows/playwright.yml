@@ -17,6 +17,8 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+      - name: Set up xvfb
+        run: sudo apt-get install xvfb
       - name: Run Playwright tests
         env:  # Set environment variables from secrets
           BASE_URL: ${{ secrets.DEV_URL }}
