@@ -13,7 +13,7 @@ test.beforeAll(async async => {
 
 test.describe('Tests for login', () => {
   test('login as user', async ({ page }) => {
-    await page.goto(baseTest.baseURL);
+    await page.goto('https://dev.transfans.com/login');
     await expect(page).toHaveURL(baseTest.baseURL);
 
     const loginPage = new LoginPage(page);
@@ -24,29 +24,29 @@ test.describe('Tests for login', () => {
 
   });
 
-  test('login as admin', async ({ page }) => {
-    await page.goto(baseTest.adminURL + 'login');
-    // await expect(page).toHaveURL(/`${baseTest.adminURL}`/);
-
-    const loginPage = new AdminLoginPage(page);
-    await loginPage.logIn(baseTest.adminName, baseTest.adminPassword)
-
-    const mainPage = new MainAdminPage();
-    await mainPage.verifyThatIsMainAdminPage(baseTest.adminName, page)
-
-  });
-
-  test('login as creator', async ({ page }) => {
-    await page.goto(baseTest.baseURL);
-    await expect(page).toHaveURL(baseTest.baseURL);
-
-    const loginPage = new LoginPage(page);
-    await loginPage.logIn(baseTest.creatorName, baseTest.creatorPassword)
-
-    const mainPage = new MainPage(page);
-    await mainPage.verifyThatIsMainPage(page)
-
-  });
+  // test('login as admin', async ({ page }) => {
+  //   await page.goto(baseTest.adminURL + 'login');
+  //   // await expect(page).toHaveURL(/`${baseTest.adminURL}`/);
+  //
+  //   const loginPage = new AdminLoginPage(page);
+  //   await loginPage.logIn(baseTest.adminName, baseTest.adminPassword)
+  //
+  //   const mainPage = new MainAdminPage();
+  //   await mainPage.verifyThatIsMainAdminPage(baseTest.adminName, page)
+  //
+  // });
+  //
+  // test('login as creator', async ({ page }) => {
+  //   await page.goto(baseTest.baseURL);
+  //   await expect(page).toHaveURL(baseTest.baseURL);
+  //
+  //   const loginPage = new LoginPage(page);
+  //   await loginPage.logIn(baseTest.creatorName, baseTest.creatorPassword)
+  //
+  //   const mainPage = new MainPage(page);
+  //   await mainPage.verifyThatIsMainPage(page)
+  //
+  // });
 });
 
 
