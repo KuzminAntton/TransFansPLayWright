@@ -32,29 +32,28 @@ jobs:
           ADMIN_PASSWORD: ${{ secrets.ADMIN_DEV_PASSWORD }}
           USER_NAME: ${{ secrets.USER_DEV_NAME }}
           USER_PASSWORD: ${{ secrets.USER_DEV_PASSWORD }}
-        run: (xvfb-run -a npx playwright test > test-output.log 2>&1) || echo "Playwright tests failed!"
-      - name: Generate Test Summary
-        run: |
-          grep -E '✓|✕' test-output.log > test-summary.txt
+        run: xvfb-run -a npx playwright test
       - name: Install Allure
         run: npm install -g allure-commandline
       - name: Generate Allure Report
         run: allure generate allure-results --clean -o allure-report
+      - name: Zip Allure Report
+        run: zip -r allure-report.zip allure-report/
       - uses: actions/upload-artifact@v3
         if: always()
         with:
           name: playwright-report
-          path: allure-report/
+          path: allure-report.zip
           retention-days: 30
-      - name: Send email with test summary
+      - name: Send email with zipped Allure Report
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
           server_port: 465
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
-          subject: Playwright Test Summary
-          body: Here is the summary of Playwright tests.
+          subject: Playwright Test Report
+          body: Attached is the zipped Allure report from the latest Playwright tests.
           to: ${{ secrets.RECIPIENT }}
           from: ${{ secrets.MAIL_USERNAME }}
-          attachments: test-summary.txt
+          attachments: allure-report.zip
