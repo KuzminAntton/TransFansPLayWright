@@ -29,7 +29,7 @@ jobs:
           ADMIN_PASSWORD: ${{ secrets.ADMIN_DEV_PASSWORD }}
           USER_NAME: ${{ secrets.USER_DEV_NAME }}
           USER_PASSWORD: ${{ secrets.USER_DEV_PASSWORD }}
-        run: xvfb-run -a npx playwright test --workers=4
+        run: xvfb-run -a npx playwright test
       - uses: actions/upload-artifact@v3
         if: always()
         with:
