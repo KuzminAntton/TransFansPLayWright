@@ -13,8 +13,8 @@ test.beforeAll(async async => {
 
 test.describe('Tests for login', () => {
   test('login as user', async ({ page }) => {
-    await page.goto(baseTest.baseURL);
-    await expect(page).toHaveURL(baseTest.baseURL);
+    await page.goto(baseTest.baseURL + 'login');
+    await expect(page).toHaveURL(baseTest.baseURL + 'login');
 
     const loginPage = new LoginPage(page);
     await loginPage.logIn(baseTest.userName, baseTest.userPassword)
@@ -37,8 +37,8 @@ test.describe('Tests for login', () => {
   });
 
   test('login as creator', async ({ page }) => {
-    await page.goto(baseTest.baseURL);
-    await expect(page).toHaveURL(baseTest.baseURL);
+    await page.goto(baseTest.baseURL + 'login');
+    await expect(page).toHaveURL(baseTest.baseURL + 'login');
 
     const loginPage = new LoginPage(page);
     await loginPage.logIn(baseTest.creatorName, baseTest.creatorPassword)

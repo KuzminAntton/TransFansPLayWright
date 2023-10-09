@@ -17,7 +17,7 @@ export class BaseTest {
     async setup() {
         this.browser = await chromium.launch({
             // Common launch options for all tests
-            headless: true,
+            headless: false,
             devtools: true,
             args: ['--start-maximized'],
             // ... other options ...
