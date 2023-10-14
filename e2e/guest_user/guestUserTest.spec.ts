@@ -69,6 +69,60 @@ test.describe('Tests for not logged user and verify Social, Explore and Chat tab
 
     });
 
+    test('Verify facebook link is available for not logged user', async ({ page }) => {
+        await page.goto(baseTest.baseURL);
+        await expect(page).toHaveURL(baseTest.baseURL);
+
+        const mainPage = new MainPage(page);
+        await mainPage.verifyThatIsMainPage(page)
+        await mainPage.clickOnFacebookFooterLink();
+
+        await expect(page).toHaveURL("https://www.facebook.com/Transfans/")
+
+    });
+
+    test('Verify instagram link is available for not logged user', async ({ page }) => {
+        await page.goto(baseTest.baseURL);
+        await expect(page).toHaveURL(baseTest.baseURL);
+
+        const mainPage = new MainPage(page);
+        await mainPage.verifyThatIsMainPage(page)
+        await mainPage.clickOnInstagramFooterLink();
+
+        await expect(page).toHaveURL("https://www.instagram.com/transfans/")
+
+    });
+
+    test('Verify tiktok link is available for not logged user', async ({ page }) => {
+        await page.goto(baseTest.baseURL);
+        await expect(page).toHaveURL(baseTest.baseURL);
+
+        const mainPage = new MainPage(page);
+        await mainPage.verifyThatIsMainPage(page)
+        await mainPage.clickOnTiktokFooterLink();
+
+
+        await expect(page).not.toHaveURL("https://www.tiktok.com/404?fromUrl=/transfans")
+        //TODO rewrite this with correct URL because right now it is 404
+        // await expect(page).toHaveURL("here should be correct URL")
+
+    });
+
+    test('Verify youtube link is available for not logged user', async ({ page }) => {
+        await page.goto(baseTest.baseURL);
+        await expect(page).toHaveURL(baseTest.baseURL);
+
+        const mainPage = new MainPage(page);
+        await mainPage.verifyThatIsMainPage(page)
+        await mainPage.clickOnYoutubeFooterLink();
+
+
+        await expect(page.locator('css=#error-page-hh-illustration')).not.toBeVisible();
+        //TODO rewrite this with correct URL because right now it is 404
+        // await expect(page).toHaveURL("here should be correct URL")
+
+    });
+
 
 });
 
